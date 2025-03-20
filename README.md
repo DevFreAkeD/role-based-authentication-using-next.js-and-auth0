@@ -17,7 +17,7 @@ It includes **protected routes, admin-only pages, secured API endpoints, and adv
 ```
 ├── app/                    # Main application
 │   ├── api/                # API routes
-│   │   ├── auth/[auth0]/   # Authentication endpoints (login, logout, callback, me)
+│   │   ├── auth/           # Authentication endpoints (login, logout, callback, me)
 │   │   ├── protected/      # Admin-only API endpoints
 │   │   └── public/         # Public API endpoints
 │   ├── page.tsx            # Home page
