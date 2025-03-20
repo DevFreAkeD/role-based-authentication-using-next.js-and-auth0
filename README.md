@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🔐 Next.js 15 + Auth0 Role-Based Authentication Demo
 
-## Getting Started
+This is a **demo project** showcasing **role-based authentication and authorization** using **Next.js 15 (App Router)** and **Auth0**.  
+It includes **protected routes, admin-only pages, secured API endpoints, and advanced authentication patterns** for seamless access control.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+✅ **Authentication with Auth0** (Login/Logout)  
+✅ **Role-Based Authorization** (Admin vs. Normal User)  
+✅ **Protected Routes** (Only accessible to logged-in users)  
+✅ **Admin Dashboard** (Only for admin users)  
+✅ **Public & Protected API Endpoints**  
+✅ **Server & Client-Side Authentication Handling**  
+
+## 📂 Project Structure
+
+```
+├── app/                    # Main application
+│   ├── api/                # API routes
+│   │   ├── auth/           # Authentication endpoints (login, logout, callback, me)
+│   │   ├── protected/      # Admin-only API endpoints
+│   │   └── public/         # Public API endpoints
+│   ├── page.tsx            # Home page
+│   ├── layout.tsx          # Layout wrapper
+│   ├── loading.tsx         # Loading UI
+│   ├── admin/              # Admin dashboard
+│   │   └── page.tsx        # Admin dashboard component
+│   ├── logged-in/          # Logged-in user page
+│   │   └── page.tsx        # Logged-in user component
+│   ├── unauthorized/       # Unauthorized access page
+│   │   └── page.tsx        # Unauthorized component
+├── public/                 # Static assets
+│   ├── fonts/              # Custom fonts (GeistMonoVF, GeistVF)
+├── actions/                # Server actions
+│   ├── auth.ts             # Auth-related actions
+│   ├── createAccessToken.ts# Token generation
+│   ├── getUserRoles.ts     # Fetch user roles
+│   ├── isUserAdmin.ts      # Admin role verification
+├── components/             # Reusable React components
+│   ├── ProfileClient.tsx   # Client-side authentication component
+│   ├── ProfileServer.tsx   # Server-side authentication component
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔧 Setup & Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 1️⃣ Clone the Repository
+```sh
+git clone https://github.com/DevFreAkeD/role-based-authentication-using-next.js-and-auth0.git
+cd role-based-authentication-using-next.js-and-auth0
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 2️⃣ Install Dependencies
+```sh
+npm install
+```
 
-## Learn More
+### 3️⃣ Configure Auth0  
+Create a **`.env.local`** file and add the following environment variables:
 
-To learn more about Next.js, take a look at the following resources:
+```ini
+AUTH0_SECRET="use [openssl rand -hex 32] to generate a 32 bytes value"
+AUTH0_BASE_URL="http://localhost:3000"
+AUTH0_ISSUER_BASE_URL="https://your-auth0-domain"
+AUTH0_CLIENT_ID="your-auth0-client-id"
+AUTH0_CLIENT_SECRET="your-auth0-client-secret"
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 4️⃣ Set up Auth0 Roles
+In your Auth0 dashboard:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Create an 'admin' role
+- Assign the role to test users
+- Configure the API permissions
 
-## Deploy on Vercel
+### 5️⃣ Run the Development Server
+```sh
+npm run dev
+```
+App will be available at **[http://localhost:3000](http://localhost:3000)**.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🔑 Authentication Flow
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1️⃣ **Users log in via Auth0**  
+2️⃣ **Auth0 returns user profile & roles**  
+3️⃣ **Server validates roles & grants access**  
+4️⃣ **Protected routes & APIs enforce permissions**  
+
+## 🌍 API Endpoints
+
+| Endpoint            | Access Level         | Description |
+|---------------------|---------------------|-------------|
+| `/api/auth/login`   | 🔑 Authenticated     | Log in to Auth0 |
+| `/api/auth/logout`  | 🔑 Authenticated     | Log out from Auth0 |
+| `/api/auth/callback`| 🔑 Authenticated     | Auth0 callback handler |
+| `/api/auth/me`      | 🔑 Authenticated     | Get user profile |
+| `/api/public`       | 🌍 Public            | Open to everyone |
+| `/api/protected`    | 🔒 Admin-Only        | Restricted to admins |
+
+## 🛠️ Technologies Used
+
+- **Next.js 15 (App Router)**
+- **Auth0 for authentication**
+- **Tailwind CSS for UI**
+- **React Server & Client Components**
+
+---
+
+🚀 **Built with ❤️ using Next.js & Auth0**  
+🔗 **Need help?** Feel free to open an [issue](https://github.com/DevFreAkeD/role-based-authentication-using-next.js-and-auth0/issues)!  
