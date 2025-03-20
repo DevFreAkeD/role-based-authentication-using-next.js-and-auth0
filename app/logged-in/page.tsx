@@ -1,5 +1,6 @@
 import { getSession } from "@auth0/nextjs-auth0";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 
 const welcomeMessages = [
     "Welcome to your dashboard! No capes required. 🦸‍♂️",
@@ -35,9 +36,16 @@ export default async function LoggedIn() {
                 {user?.name || "Mysterious Traveler"} 👋
             </span>
             </h1>
-            <p className="text-gray-600 mt-4">
+            <p className="text-gray-600 my-4">
                 {randomMessage}
             </p>
+             {/* Redirect Button */}
+            <Link
+                href="/"
+                className="inline-block bg-gradient-to-r mt-2 from-blue-500 to-blue-600 text-white px-8 py-3 rounded-md font-medium transition-all duration-200 shadow-md hover:shadow-lg hover:from-blue-600 hover:to-blue-700"
+            >
+                Return Home
+            </Link>
         </div>
     </section>
   );
